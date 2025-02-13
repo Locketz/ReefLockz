@@ -1,0 +1,887 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Contact Us | ReefLockz</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="shortcut icon" href="images/favi-logo.png" type"image/x-icon">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: linear-gradient(90deg, #004a7c, #46a0c3);
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-link {
+            color: #f8f9fa !important;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #fff !important;
+        }
+
+        /* Sign Up Button */
+        .btn-signup {
+            background: #93d3c3;
+            width: 100%x;
+            color: white;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .btn-signup:hover {
+            background: #93d3c3;
+            color: #002d4a;
+            transform: scale(1.1);
+        }
+
+        .navbar .dropdown-menu {
+            background: rgba(0, 74, 124, 1);
+            border-radius: 8px;
+            border: none;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            transform: translateY(10px);
+            transition: all 0.3s ease-in-out;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+
+        .navbar .dropdown-menu.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .navbar .dropdown-item {
+            color: white;
+            font-weight: 500;
+            padding: 10px 20px;
+            transition: background 0.3s ease, padding-left 0.3s ease;
+        }
+
+        .navbar .dropdown-item:hover {
+            background: #005a9c; 
+            color: #fff;
+            padding-left: 25px; 
+        }
+        .navbar-toggler {
+    margin-left: auto;
+  }
+
+
+        /* Modal */
+        .signup-container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+            position: relative;
+        }
+
+        .signup-container h2 {
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        .btn-signup {
+            background: #93d3c3;
+            color: #004a7c;
+            font-weight: bold;
+            padding: 12px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-signup:hover {
+            background: #93d3c3;
+        }
+
+        .text-small {
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .text-small a {
+            color: #004a7c;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .btn-social {
+            border-radius: 25px;
+            padding: 12px;
+            font-weight: bold;
+            color: white;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .btn-google {
+            background-color: #db4437;
+        }
+
+        .btn-facebook {
+            background-color: #3b5998;
+        }
+
+        .btn-google:hover, .btn-facebook:hover {
+            opacity: 0.8;
+        }
+
+        .btn-social i {
+            margin-right: 10px;
+        }
+
+        .text-small a:hover {
+            text-decoration: underline;
+        }
+
+        .login-container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+            position: relative;
+            
+        }
+
+        .login-container h2 {
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        .btn-login {
+            background: #93d3c3;
+            color: #004a7c;
+            font-weight: bold;
+            padding: 12px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-login:hover {
+            background: #93d3c3;
+        }
+
+        
+
+        /* Off-Canvas Menu */
+        .offcanvas {
+            width: 260px;
+            background: #003357;
+            color: #f8f9fa; /* Updated for better readability */
+        }
+
+        .offcanvas-header {
+            background-color: #003357;
+            padding: 15px;
+        }
+
+        .offcanvas-body {
+            background-color: #004a7c;
+            padding-top: 10px;
+            color: #f8f9fa; /* Updated for better readability */
+        }
+
+        .offcanvas .nav-link {
+            color: #f8f9fa !important;
+            font-size: 18px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .offcanvas .nav-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #46a0c3 !important;
+        }
+
+        .offcanvas .dropdown-menu {
+            background: rgba(0, 74, 124, 1);
+            border-radius: 8px;
+            border: none;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            transform: translateY(10px);
+            transition: all 0.3s ease-in-out;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .offcanvas .dropdown-menu.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .offcanvas .dropdown-item {
+            color: white !important;
+            font-size: 16px;
+            padding: 10px 15px;
+            transition: background 0.3s;
+        }
+
+        .offcanvas .dropdown-item:hover {
+            background-color: #003357;
+            color: #e3f3fc !important;
+        }
+
+        .offcanvas-header img {
+            width: 17%;
+        }
+
+        /* Line Break */
+        .offcanvas hr {
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            margin: 12px 0;
+        }
+
+        /* Smaller Sign-Up Button */
+        .offcanvas .btn-signup {
+            background: #93d3c3;
+            color: white;
+            font-weight: bold;
+            padding: 6px 14px;
+            border-radius: 18px;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            display: block;
+            text-align: center;
+            width: 50%;
+            margin-top: 20px;
+            margin-left: 0 !important; 
+            margin-right: auto;
+        }
+
+        .offcanvas .btn-signup:hover {
+            background: #93d3c3;
+            color: #002d4a;
+        }
+
+        /* Contact Us Section */
+        #contact-us {
+            padding: 80px 20px;
+            background-color: #ffffff;
+        }
+
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #f0f8ff; /* Light blue */
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            flex: 1;
+            min-width: 50%;
+            padding-right: 30px;
+        }
+
+        .contact-form h3 {
+            font-size: 2.2rem;
+            color: #023e8a;
+            margin-bottom: 20px;
+        }
+
+        .contact-form .form-floating {
+            margin-bottom: 15px;
+        }
+
+        .contact-form .form-floating input,
+        .contact-form .form-floating textarea {
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 1rem;
+            border: 2px solid #93d3c3;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contact-form .form-floating input:focus,
+        .contact-form .form-floating textarea:focus {
+            border-color: #0077b6;
+            box-shadow: 0 0 5px rgba(0, 119, 182, 0.5);
+            outline: none;
+        }
+
+        .contact-form .btn-submit {
+            background-color: #00b4d8;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .contact-form .btn-submit:hover {
+            background-color: #0077b6;
+            transform: translateY(-3px);
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 40%;
+            background: #004a7c;
+            color: white;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        .contact-info h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #93d3c3;
+        }
+
+        .contact-info p {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .contact-info a {
+            color: #93d3c3;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-info .social-icons {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .contact-info .social-icons a {
+            color: white;
+            font-size: 18px;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid white;
+            border-radius: 50%;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .contact-info .social-icons a:hover {
+            background-color: #93d3c3; 
+            color: #004a7c; 
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .contact-container {
+                flex-direction: column;
+                padding: 20px;
+            }  
+
+            .contact-form {
+                padding-right: 0;
+                min-width: 100%;
+            }
+
+            .contact-info {
+                min-width: 100%;
+                text-align: center;
+            }
+        }
+
+
+        .footer {
+        background: linear-gradient(90deg, #004a7c, #46a0c3); /* Match the navbar gradient */
+        color: white;
+        padding: 40px 20px;
+        font-size: 14px;
+    }
+
+    .footer h5 {
+        color: #93d3c3;
+        font-weight: bold;
+        margin-bottom: 3px;
+        text-transform: uppercase;
+    }
+
+    .footer a, .footer p {
+        color: #fff;
+        text-decoration: none;
+        font-size: 14px;
+        margin-bottom: 5px;
+        display: block;
+    }
+
+    .footer a:hover {
+            color: #bbb;
+        }
+
+    .footer .social-icons {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .footer .social-icons a {
+        color: white;
+        font-size: 18px;
+        width: 35px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid white;
+        border-radius: 5px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    
+    .footer .social-icons a:hover {
+        background-color: #93d3c3; 
+        color: #004a7c; 
+    }
+
+    .footer .logo img {
+        max-width: 120px;
+        margin-bottom: 15px;
+    }
+
+    .footer .footer-bottom {
+        border-top: 1px solid #444;
+        margin-top: 30px;
+        padding-top: 15px;
+        text-align: center;
+        font-size: 13px;
+        color: #fff;
+    }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <!-- Logo -->
+            <a class="navbar-brand" href="index.html">
+                <img src="images/real-logo.png" height="65" alt="Logo">
+            </a>
+    
+            <!-- Navbar Toggler -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <!-- Navbar Links -->
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav me-auto ms-3">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">What We Do</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="protect-ocean.html">Protect Ocean Land, and Sea Animals </a></li>
+                            <li><a class="dropdown-item" href="reduce-waste.html">Reduce Pollutants and Waste</a></li>
+                            <li><a class="dropdown-item" href="sustainible-living.html">Sustainable Living</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">About Us</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="our-team.html">Who We Are</a></li>
+                            <li><a class="dropdown-item" href="#">Contact Us</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Volunteer</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="donate.html">Donate</a></li>
+                            <li><a class="dropdown-item" href="how-you-help.html"> How You Can Help </a></li>
+                            <li><a class="dropdown-item" href="become-a-member.html">Become A Member</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="d-flex">
+                <button class="btn btn-signup ms-auto d-none d-lg-block" type="button" data-bs-toggle="modal" data-bs-target="#first"> Sign Up </button>
+            </div>
+    
+            <div class="modal fade" id="first" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content" style="border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
+                        
+                        <!-- Modal Header -->
+                        <div class="modal-header" style="background: linear-gradient(135deg, #93d3c3, #004a7c); color: white; text-align: center; padding: 20px;">
+                            <h1 class="modal-title fs-5 w-100" id="exampleModalLabel">Sign Up</h1>
+                            <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" style="filter: invert(1);"></button>
+                        </div>
+            
+                        <!-- Modal Body -->
+                        <div class="modal-body p-4">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="name" class="form-label fw-bold">Full Name</label>
+                                    <input type="text" class="form-control rounded-pill px-3 py-2" id="name" placeholder="Enter your name" required>
+                                </div>
+            
+                                <div class="mb-3">
+                                    <label for="email" class="form-label fw-bold">Email Address</label>
+                                    <input type="email" class="form-control rounded-pill px-3 py-2" id="email" placeholder="Enter your email" required>
+                                </div>
+            
+                                <div class="mb-3">
+                                    <label for="password" class="form-label fw-bold">Password</label>
+                                    <input type="password" class="form-control rounded-pill px-3 py-2" id="password" placeholder="Create a password" required>
+                                </div>
+            
+                                <button type="submit" class="btn btn-signup w-100 rounded-pill mt-3" style="background: #004a7c; color: white; font-size: 16px;">Create Account</button>
+            
+                                <p class="text-small mt-3 text-center">Already have an account? <a href="#" class="text-decoration-none"  data-bs-toggle="modal" data-bs-target="#second">Log in</a></p>
+                            </form>
+                        </div>
+            
+                        <!-- Modal Footer -->
+                        <div class="modal-footer" style="background: #f8f9fa; border-top: none; padding: 20px;">
+                            <div class="w-100 text-center">
+                                <p class="mb-2 fw-semibold text-muted">Or sign up with</p>
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-social btn-google d-flex align-items-center justify-content-center">
+                                        <i class="fab fa-google fs-5 me-2"></i> Continue with Google
+                                    </button>
+                                    <button class="btn btn-social btn-facebook d-flex align-items-center justify-content-center">
+                                        <i class="fab fa-facebook-f fs-5 me-2"></i> Continue with Facebook
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="modal fade" id="second" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content" style="border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
+                        
+                        <!-- Modal Header -->
+                        <div class="modal-header" style="background: linear-gradient(135deg, #93d3c3, #004a7c); color: white; text-align: center; padding: 20px;">
+                            <h1 class="modal-title fs-5 w-100">Log In</h1>
+                            <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" style="filter: invert(1);"></button>
+                        </div>
+            
+                        <!-- Modal Body -->
+                        <div class="modal-body p-4">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label fw-bold">Email Address</label>
+                                    <input type="email" class="form-control rounded-pill px-3 py-2" id="email" placeholder="Enter your email" required>
+                                </div>
+            
+                                <div class="mb-3">
+                                    <label for="password" class="form-label fw-bold">Password</label>
+                                    <input type="password" class="form-control rounded-pill px-3 py-2" id="password" placeholder="Enter your password" required>
+                                </div>
+            
+                                <button type="submit" class="btn btn-login w-100 rounded-pill mt-3" style="background: #004a7c; color: white; font-size: 16px;">Log In</button>
+            
+                                <p class="text-small mt-3 text-center">
+                                    Don't have an account? <a href="#" class="text-decoration-none"  data-bs-toggle="modal" data-bs-target="#first">Sign Up</a>
+                                </p>
+                            </form>
+                        </div>
+            
+                        <!-- Modal Footer -->
+                        <div class="modal-footer" style="background: #f8f9fa; border-top: none; padding: 20px;">
+                            <div class="w-100 text-center">
+                                <p class="mb-2 fw-semibold text-muted">Or log in with</p>
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-social btn-google d-flex align-items-center justify-content-center">
+                                        <i class="fab fa-google fs-5 me-2"></i> Continue with Google
+                                    </button>
+                                    <button class="btn btn-social btn-facebook d-flex align-items-center justify-content-center">
+                                        <i class="fab fa-facebook-f fs-5 me-2"></i> Continue with Facebook
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </nav>
+    
+        <!-- Offcanvas Menu -->
+        <div class="offcanvas offcanvas-start" id="offcanvasNavbar">
+        <div class="offcanvas-header">
+            <img src="images/real-logo.png" alt="Company Logo">
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <hr>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">What We Do</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="protect-ocean.html">Protect Ocean Land, and Sea Animals</a></li>
+                        <li><a class="dropdown-item" href="reduce-waste.html">Reduce Pollutants and Waste</a></li>
+                        <li><a class="dropdown-item" href="sustainible-living.html">Sustainable Living</a></li>
+                    </ul>
+                </li>
+                <hr>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">About Us</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="our-team.html">Who We Are</a></li>
+                        <li><a class="dropdown-item" href="#">Contact Us</a></li>
+                    </ul>
+                </li>
+                <hr>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Volunteer</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="donate.html">Donate</a></li>
+                        li><a class="dropdown-item" href="how-you-help.html">How You Can Help</a></li>
+                        <li><a class="dropdown-item" href="become-a-member.html">Become A Member</a></li>
+                    </ul>
+                </li>
+            </ul>
+            
+            <button class="btn btn-signup ms-auto d-lg-block" type="button" data-bs-toggle="modal" data-bs-target="#first"> Sign Up </button>
+    
+            <div class="modal fade" id="first" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content" style="border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
+                        
+                        <!-- Modal Header -->
+                        <div class="modal-header" style="background: linear-gradient(135deg, #93d3c3, #004a7c); color: white; text-align: center; padding: 20px;">
+                            <h1 class="modal-title fs-5 w-100" id="exampleModalLabel">Sign Up</h1>
+                            <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" style="filter: invert(1);"></button>
+                        </div>
+            
+                        <!-- Modal Body -->
+                        <div class="modal-body p-4">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="name" class="form-label fw-bold">Full Name</label>
+                                    <input type="text" class="form-control rounded-pill px-3 py-2" id="name" placeholder="Enter your name" required>
+                                </div>
+            
+                                <div class="mb-3">
+                                    <label for="email" class="form-label fw-bold">Email Address</label>
+                                    <input type="email" class="form-control rounded-pill px-3 py-2" id="email" placeholder="Enter your email" required>
+                                </div>
+            
+                                <div class="mb-3">
+                                    <label for="password" class="form-label fw-bold">Password</label>
+                                    <input type="password" class="form-control rounded-pill px-3 py-2" id="password" placeholder="Create a password" required>
+                                </div>
+            
+                                <button type="submit" class="btn btn-signup w-100 rounded-pill mt-3" style="background: #004a7c; color: white; font-size: 16px;">Create Account</button>
+            
+                                <p class="text-small mt-3 text-center">Already have an account? <a href="#" class="text-decoration-none"  data-bs-toggle="modal" data-bs-target="#second">Log in</a></p>
+                            </form>
+                        </div>
+            
+                        <!-- Modal Footer -->
+                        <div class="modal-footer" style="background: #f8f9fa; border-top: none; padding: 20px;">
+                            <div class="w-100 text-center">
+                                <p class="mb-2 fw-semibold text-muted">Or sign up with</p>
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-social btn-google d-flex align-items-center justify-content-center">
+                                        <i class="fab fa-google fs-5 me-2"></i> Continue with Google
+                                    </button>
+                                    <button class="btn btn-social btn-facebook d-flex align-items-center justify-content-center">
+                                        <i class="fab fa-facebook-f fs-5 me-2"></i> Continue with Facebook
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="modal fade" id="second" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content" style="border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
+                        
+                        <!-- Modal Header -->
+                        <div class="modal-header" style="background: linear-gradient(135deg, #93d3c3, #004a7c); color: white; text-align: center; padding: 20px;">
+                            <h1 class="modal-title fs-5 w-100">Log In</h1>
+                            <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" style="filter: invert(1);"></button>
+                        </div>
+            
+                        <!-- Modal Body -->
+                        <div class="modal-body p-4">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label fw-bold">Email Address</label>
+                                    <input type="email" class="form-control rounded-pill px-3 py-2" id="email" placeholder="Enter your email" required>
+                                </div>
+            
+                                <div class="mb-3">
+                                    <label for="password" class="form-label fw-bold">Password</label>
+                                    <input type="password" class="form-control rounded-pill px-3 py-2" id="password" placeholder="Enter your password" required>
+                                </div>
+            
+                                <button type="submit" class="btn btn-login w-100 rounded-pill mt-3" style="background: #004a7c; color: white; font-size: 16px;">Log In</button>
+            
+                                <p class="text-small mt-3 text-center">
+                                    Don't have an account? <a href="#" class="text-decoration-none"  data-bs-toggle="modal" data-bs-target="#first">Sign Up</a>
+                                </p>
+                            </form>
+                        </div>
+            
+                        <!-- Modal Footer -->
+                        <div class="modal-footer" style="background: #f8f9fa; border-top: none; padding: 20px;">
+                            <div class="w-100 text-center">
+                                <p class="mb-2 fw-semibold text-muted">Or log in with</p>
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-social btn-google d-flex align-items-center justify-content-center">
+                                        <i class="fab fa-google fs-5 me-2"></i> Continue with Google
+                                    </button>
+                                    <button class="btn btn-social btn-facebook d-flex align-items-center justify-content-center">
+                                        <i class="fab fa-facebook-f fs-5 me-2"></i> Continue with Facebook
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+      <!-- Contact Us Section -->
+        <section id="contact-us">
+        <div class="contact-container">
+            <!-- Contact Form (Left) -->
+            <div class="contact-form">
+                <h3>Contact Form</h3>
+                <form action="#" method="POST">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="name" name="name" required>
+                        <label for="name">Full Name</label>
+                    </div>
+                    <div class="form-floating">
+                        <input type="email" class="form-control" id="email" name="email" required>
+                        <label for="email">Email Address</label>
+                    </div>
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="subject" name="subject" required>
+                        <label for="subject">Contact No.</label>
+                    </div>
+                    <div class="form-floating">
+                        <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                        <label for="message">Message</label>
+                    </div>
+                    <button type="submit" class="btn-submit">Send Message</button>
+                </form>
+            </div>
+    
+            <!-- Contact Information (Right) -->
+            <div class="contact-info">
+                <h3>Contact Information</h3>
+                <p><strong>Phone:</strong> +959123456</p>
+                <p><strong>Location:</strong> Myanmar</p>
+                <p><strong>Email:</strong> <a href="mailto:winksvyland@gmail.com">winksvyland@gmail.com</a></p>
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="https://www.tiktok.com/@wintandely?_t=ZS-8tfNwQU0iRd&_r=1"><i class="bi bi-tiktok"></i></a>
+                    <a href="https://www.instagram.com/wintandely?igsh=aGxkdDY0ODU2enQ1"><i class="bi bi-instagram"></i></a>
+                    <a href="https://youtube.com/@wintandely?si=rb1N3V5Y_bUkDdAI"><i class="bi bi-youtube"></i></a>
+                    <a href="https://discord.gg/BKTXMSDA2r"><i class="bi bi-discord"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+      
+    <footer class="footer">
+        <div class="container">
+          <div class="row">
+  
+            <div class="col-md-3">
+              <div class="logo">
+                <img src="images/real-logo.png" alt="Company Logo">
+              </div>
+            </div>
+  
+            <div class="col-md-3">
+                <h5> <a href="index.html" style="font-size: 1.2rem; color: #93d3c3;"> HOME PAGE </a> </h5>
+                <h5>WHAT WE DO</h5>
+                <a href="protect-ocean.html">Protect Ocean Land, and Sea Animals</a>
+                <a href="reduce-waste.html">Reduce Pollutants and Waste</a>
+                <a href="how-you-help.html">How you can help</a>
+                <a href="sustainible-living.html">Sustainable Living</a>
+            </div>
+  
+            <div class="col-md-3">
+              <h5>CONTACT US</h5>
+              <p>+959123456</p>
+              <p>Myanmar</p>
+              <a href="mailto:winksvyland@gmail.com">Email: winksvyland@gmail.com</a>
+              <h5> <a href="citation.html" style="font-size: 1.2rem; color: #93d3c3;"> REFERENCES </a> </h5>
+            </div>
+  
+            <div class="col-md-3">
+                <h5>ABOUT US</h5>
+                <a href="our-team.html">Who we are</a>
+                <h5>FOLLOW US</h5>
+                <div class="social-icons">
+                    <a href="https://www.tiktok.com/@wintandely?_t=ZS-8tfNwQU0iRd&_r=1"><i class="bi bi-tiktok"></i></a>
+                    <a href="https://www.instagram.com/wintandely?igsh=aGxkdDY0ODU2enQ1"><i class="bi bi-instagram"></i></a>
+                    <a href="https://youtube.com/@wintandely?si=rb1N3V5Y_bUkDdAI"><i class="bi bi-youtube"></i></a>
+                    <a href="https://discord.gg/BKTXMSDA2r"><i class="bi bi-discord"></i></a>
+                </div>
+            </div>
+          </div>
+  
+          <div class="footer-bottom">
+            Copyright &copy; 2025. All Rights Reserved By ReefLockz.
+          </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+
+</html>
